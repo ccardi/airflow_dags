@@ -31,9 +31,9 @@ with DAG("dag_gke_pod-simple", default_args=default_args, catchup=False, schedul
     pandas_task = GKEStartPodOperator(
         task_id='pandas_Test'
         ,name='pandas-test',
-        image='gcr.io/pod-fr-retail/k8_operators/py_pandas_bq:latest',
+        image='europe-west1-docker.pkg.dev/pod-fr-retail/demok8/demo_k8_jobs_basic:latest',
         cmds= cmds,
-        env_vars={'TEST_VARIABLE':'hello2'},
+        env_vars={'TEST_VARIABLE':'hello3'},
         resources={'request_cpu':3,  'request_memory':'100Mi'},
         get_logs=True,
         startup_timeout_seconds=360,

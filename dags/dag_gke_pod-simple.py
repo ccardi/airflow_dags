@@ -34,7 +34,7 @@ with DAG("dag_gke_pod-simple", default_args=default_args, catchup=False, schedul
         image='europe-west1-docker.pkg.dev/pod-fr-retail/demok8/demo_k8_jobs_basic:latest',
         cmds= cmds,
         env_vars={'TEST_VARIABLE':'hello3'},
-        resources={'request_cpu':3,  'request_memory':'100Mi'},
+        resources={'request_cpu':0.1,  'request_memory':'100Mi'},
         get_logs=True,
         startup_timeout_seconds=360,
         is_delete_operator_pod=False

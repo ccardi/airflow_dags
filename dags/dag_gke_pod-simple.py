@@ -33,7 +33,7 @@ with DAG("dag_gke_pod-simple", default_args=default_args, catchup=False, schedul
         ,name='pandas-test',
         image='gcr.io/pod-fr-retail/k8_operators/py_pandas_bq:latest',
         cmds= cmds,
-        env_vars={'TEST_VARIABLE':'hello'},
+        env_vars={'TEST_VARIABLE':'hello2'},
         resources={'request_cpu':3,  'request_memory':'100Mi'},
         get_logs=True,
         startup_timeout_seconds=360,

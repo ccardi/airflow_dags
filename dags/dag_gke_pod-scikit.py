@@ -44,7 +44,7 @@ with DAG("dag_gke_pod-scikit", default_args=default_args, catchup=False, schedul
             resources={'request_cpu':0.05,  'request_memory':'100Mi'},
             retries=3,
             get_logs=True,
-            startup_timeout_seconds=360,
+            startup_timeout_seconds=3600,
             retry_delay=timedelta(minutes=1),
             is_delete_operator_pod=False
         )

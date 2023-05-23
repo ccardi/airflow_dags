@@ -41,7 +41,7 @@ with DAG("dag_gke_pod-scikit", default_args=default_args, catchup=False, schedul
             name='scikit-test',
             image='gcr.io/kf-pipeline-contrib/sklearn:latest',
             cmds= scikit_cmd,
-            resources={'request_cpu':0.05,  'request_memory':'100Mi'},
+            resources={'cpu':0.05,  'memory':'100Mi'},
             retries=3,
             get_logs=True,
             startup_timeout_seconds=3600,

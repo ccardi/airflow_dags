@@ -4,6 +4,7 @@ import logging
 from datetime import datetime, date, timedelta
 from airflow import models
 from airflow.providers.google.cloud.operators.kubernetes_engine import GKEStartPodOperator
+from kubernetes.client import models as k8s_models
 
 default_args = {
     #dag arg
@@ -41,7 +42,9 @@ with DAG("dag_gke_pod-scikit", default_args=default_args, catchup=False, schedul
             name='scikit-test',
             image='gcr.io/kf-pipeline-contrib/sklearn:latest',
             cmds= scikit_cmd,
-            resources={'cpu':0.05,  'memory':'100Mi'},
+            container_resources=k8s_models.V1ResourceRequirements(
+            limits={"memory": "250M", "cpu": "100m"},
+            ),
             retries=3,
             get_logs=True,
             startup_timeout_seconds=3600,

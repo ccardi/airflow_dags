@@ -40,7 +40,7 @@ with DAG("dag_gke_pod-scikit-with_conf", default_args=default_args, catchup=Fals
         ,'--output_dir_path','/outputs/Output_Dir/data'
         ,'--estimator_name','GradientBoostingClassifier'
     ]
-    for x in range(0, 30):
+    for x in range(0, 300):
         build_model = GKEStartPodOperator(
             task_id='scikit_Test'+str(x),
             name='scikit-test',

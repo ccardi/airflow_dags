@@ -28,7 +28,7 @@ default_args = {
 
 # Define the pipeline schedule
 schedule_interval = None
-with DAG("dag_gke_pod-scikit", default_args=default_args, catchup=False, schedule_interval=schedule_interval) as dag:
+with DAG("dag_gke_pod-scikit-with_conf", default_args=default_args, catchup=False, schedule_interval=schedule_interval) as dag:
     conf="{{ dag_run.conf }}"
     print(conf)
     scikit_cmd= [

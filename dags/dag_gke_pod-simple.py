@@ -4,7 +4,7 @@ import logging
 from datetime import datetime, date, timedelta
 from airflow import models
 from airflow.providers.google.cloud.operators.kubernetes_engine import GKEStartPodOperator
-
+from kubernetes.client import models as k8s_models
 default_args = {
     #dag arg
     'owner': 'airflow',
@@ -34,7 +34,9 @@ with DAG("dag_gke_pod-simple", default_args=default_args, catchup=False, schedul
         image='europe-west1-docker.pkg.dev/pod-fr-retail/demok8/demo_k8_jobs_basic:latest',
         cmds= cmds,
         env_vars={'TEST_VARIABLE':'hello4'},
-        resources={'request_cpu':0.1,  'request_memory':'100Mi'},
+        container_resources=k8s_models.V1ResourceRequirements(
+            limits={"memory": "250M", "cpu": "100m"},
+            ),
         get_logs=True,
         startup_timeout_seconds=360,
         is_delete_operator_pod=False

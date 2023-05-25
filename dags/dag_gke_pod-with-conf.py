@@ -49,9 +49,11 @@ with DAG("dag_gke_pod-scikit-with_conf", default_args=default_args, catchup=Fals
             container_resources=k8s_models.V1ResourceRequirements(
             limits={"memory": "250M", "cpu": "100m"},
             ),
-            retries=3,
+            retries=5,
             get_logs=True,
             startup_timeout_seconds=3600,
             retry_delay=timedelta(minutes=1),
-            is_delete_operator_pod=False
+            is_delete_operator_pod=False,
+            in_cluster=False,
+            deferrable=True
         )

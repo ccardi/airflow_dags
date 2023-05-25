@@ -14,8 +14,11 @@ dag = DAG(
     'airflow_monitoring',
     default_args=default_args,
     description='liveness monitoring dag',
-    schedule_interval=None,
-    dagrun_timeout=timedelta(minutes=20))
+    schedule_interval='*/10 * * * *',
+    max_active_runs=2,
+    catchup=False,
+    dagrun_timeout=timedelta(minutes=10),
+)
 
 # priority_weight has type int in Airflow DB, uses the maximum.
 t1 = BashOperator(
@@ -23,4 +26,5 @@ t1 = BashOperator(
     bash_command='echo test',
     dag=dag,
     depends_on_past=False,
-    priority_weight=2**31-1)
+    priority_weight=2**31 - 1,
+    do_xcom_push=False)

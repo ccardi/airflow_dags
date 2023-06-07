@@ -10,7 +10,7 @@ default_args = {
     #dag arg
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2018, 7, 11),
+    'start_date': datetime(2023, 7, 11),
     'email': ['cardi@google.com'],
     'email_on_failure': False,
     'email_on_retry': False,
